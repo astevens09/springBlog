@@ -1,8 +1,8 @@
 package com.example.springblog.models;
 
-//import javax.persistence.*;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Post{
 
     public Post() {
@@ -14,14 +14,19 @@ public class Post{
         this.body = body;
     }
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String title;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String body;
 
     public long getId() {
