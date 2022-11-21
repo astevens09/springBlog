@@ -5,11 +5,10 @@
     <title>Create Post page</title>
 </head>
 <body>
-    <form method="post" action="/posts/create">
-        <input name="title" placeholder="Enter Title">
+    <form th:action="@{/posts/create}" method="post" th:object="${post}">
+        <input type="text" th:field="*{title}">
         <br>
-<!--        <input name="body" placeholder="body">-->
-        <textarea name="body"></textarea>
+        <textarea th:field="*{body}"></textarea>
         <button type="submit">Submit</button>
     </form>
 </body>
