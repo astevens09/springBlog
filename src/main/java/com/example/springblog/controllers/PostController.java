@@ -23,6 +23,12 @@ public class PostController {
         this.emailService = emailService;
     }
 
+//    public PostController(PostRepository postDao, UserRepository userDao) {
+//        this.postDao = postDao;
+//        this.userDao = userDao;
+//        this.emailService = emailService;
+//    }
+
     @GetMapping("/posts")
     private String postsIndex(Model model) {
 
@@ -101,12 +107,20 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @PostMapping("/posts/create")
-    protected String createPost(){
-        User user = userDao.getReferenceById(1L);
-
-
-
-    }
+//    @PostMapping("/posts/create")
+//    protected String createPost(){
+//        User user = userDao.getReferenceById(1L);
+//
+//        //Create form in thymeleaf for user to create post
+//
+//        //Get form data here
+//            //create new post object and assign signed in user to the Post
+//
+//        //Use prepareAndSend method from EmailService class
+//
+//        //redirect
+//
+//
+//    }
 
 }
