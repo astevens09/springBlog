@@ -23,12 +23,6 @@ public class PostController {
         this.emailService = emailService;
     }
 
-//    public PostController(PostRepository postDao, UserRepository userDao) {
-//        this.postDao = postDao;
-//        this.userDao = userDao;
-//        this.emailService = emailService;
-//    }
-
     @GetMapping("/posts")
     private String postsIndex(Model model) {
 
@@ -56,27 +50,16 @@ public class PostController {
         return "posts/create";
     }
 
-//    @PostMapping("/posts/create")
-//    private String postsCreatePost(
-//            @RequestParam(name = "title") String title,
-//            @RequestParam(name = "body") String body
-//    ) {
-//
-//        Optional<User> newUser = userDao.findById(1L);
-//        Post post = new Post(title, body, newUser.get());
-//
-//        postDao.save(post);
-//
-//        return "redirect:/posts";
-//    }
 
     @PostMapping("/posts/create")
     protected String postsCreatePost(@ModelAttribute Post post) {
 
-        Optional<User> newUser = userDao.findById(1L);
+        Optional<User> newUser = userDao.findById(2L);
         Post newPost = new Post(post.getTitle(), post.getBody(), newUser.get());
 
+        emailService.prepareAndSend(newPost,"New Post Created",newUser.get().getUserName()+" created a new post");
         postDao.save(newPost);
+
 
         return "redirect:/posts";
     }
