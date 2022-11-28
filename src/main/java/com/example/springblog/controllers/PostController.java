@@ -4,22 +4,23 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.respositories.PostRepository;
 import com.example.springblog.respositories.UserRepository;
+import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -98,6 +99,14 @@ public class PostController {
 //        System.out.println(post.getBody());
 //        System.out.println("Edit post successful");
         return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/create")
+    protected String createPost(){
+        User user = userDao.getReferenceById(1L);
+
+
+
     }
 
 }
