@@ -5,6 +5,7 @@ import com.example.springblog.models.User;
 import com.example.springblog.respositories.PostRepository;
 import com.example.springblog.respositories.UserRepository;
 import com.example.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,8 @@ public class PostController {
 
     @GetMapping("/posts/create")
     private String postsCreateGet(Model model) {
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         model.addAttribute("post",new Post());
         return "posts/create";
     }
